@@ -1,0 +1,13 @@
+i want a prompt to generate perfect vue 3 and nuxt 3 code :
+- use composition api
+- use typescript, do not use "any" type
+- use pinia for state management
+- use tailwindcss for styling
+- make sure the code is well structured and follows best practices
+- do not include vue import statements (they are globally available in nuxt4)
+- <script setup> syntax should be used, before the <template> block
+- follow ES6+ standards
+- ensure the code is modular and reusable
+- no output size limitations
+- provide ONLY comments that are necessary for understanding complex logic, no redundant comments
+- avoid unnecessary verbosity

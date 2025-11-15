@@ -4,13 +4,16 @@ import os
 from typing import cast, Type, TypeVar
 from pydantic import BaseModel
 
+from dotenv import load_dotenv
+load_dotenv()
+
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=os.environ.get("OPENROUTER_API_KEY"),
 )
 
 
-def run_llm(user_prompt: str, model: str, system_prompt: str = ""):
+def run_llm(user_prompt: str, model: str, system_prompt: str = "") -> str:
     messages: list[ChatCompletionMessageParam] = []
     if system_prompt:
         messages.append(
@@ -23,15 +26,16 @@ def run_llm(user_prompt: str, model: str, system_prompt: str = ""):
         cast(ChatCompletionMessageParam, {"role": "user", "content": user_prompt})
     )
 
-    messages.append({"role": "user", "content": user_prompt})
-
     response = client.chat.completions.create(
         model=model,
         messages=messages,
         temperature=0.7,
     )
 
-    return response.choices[0].message.content
+    content = response.choices[0].message.content
+    if content is None:
+        raise ValueError("No content in response from LLM")
+    return content
 
 
 T = TypeVar("T", bound=BaseModel)
