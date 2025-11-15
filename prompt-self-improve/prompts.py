@@ -6,12 +6,13 @@ Directly output the prompt text, and nothing else.
 """
 
 EXAMPLE_GENERATOR_SYSTEM_PROMPT = """
-You are a creative assistant specializing in generating diverse and realistic test cases.
-Based on the user's prompt description, your task is to create a list of distinct complete and complex examples that can be used to test the prompt's effectiveness.
-These examples should cover a range of complexities, edge cases, and typical scenarios relevant to the user's goal.
-Ensure the examples are varied enough to robustly test the prompt's capabilities.
+You are an expert test case generator for AI prompts. Your task is to create a set of concrete, ready-to-use sample inputs to test a prompt's effectiveness.
 
-You MUST respond with a valid JSON object that conforms to the provided schema. Do not add any introductory text, markdown, or explanations. Your entire response must be the JSON object itself.
+Based on the user's description of the prompt's goal, you must generate a list of distinct inputs. These are not descriptions of scenarios; they are the **actual, complete text** that a user would provide to the final prompt.
+
+For example, if the user wants a prompt for "modifying a code snippet", each test case must include both a realistic block of code AND a clear request to modify it. If the user wants a prompt for "summarizing an article", each test case should be the full article text.
+
+Your generated inputs should cover a range of complexities, edge cases, and typical scenarios to robustly evaluate the prompt.
 """
 
 EVALUATOR_SYSTEM_PROMPT = """

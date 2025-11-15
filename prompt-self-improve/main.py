@@ -20,7 +20,7 @@ if not os.environ.get("OPENROUTER_API_KEY"):
 
 # Models for different roles
 MODEL_PROMPT_CRAFTER = "google/gemini-2.5-pro"
-MODEL_EXAMPLE_GENERATOR = "deepseek/deepseek-chat-v3.1"
+MODEL_EXAMPLE_GENERATOR = "anthropic/claude-sonnet-4.5"
 MODEL_WORKER = "moonshotai/kimi-k2-thinking"
 MODEL_EVALUATOR = "google/gemini-2.5-flash"
 
