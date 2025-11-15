@@ -1,5 +1,7 @@
 from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam
 import os
+from typing import cast
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -8,9 +10,17 @@ client = OpenAI(
 
 
 def run_llm(user_prompt: str, model: str, system_prompt: str = ""):
-    messages = []
+    messages: list[ChatCompletionMessageParam] = []
     if system_prompt:
-        messages.append({"role": "system", "content": system_prompt})
+        messages.append(
+            cast(
+                ChatCompletionMessageParam, {"role": "system", "content": system_prompt}
+            )
+        )
+
+    messages.append(
+        cast(ChatCompletionMessageParam, {"role": "user", "content": user_prompt})
+    )
 
     messages.append({"role": "user", "content": user_prompt})
 
